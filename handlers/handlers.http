@@ -1,0 +1,15 @@
+@baseurl = http://localhost:8080/api
+
+### Get all data from csv
+
+GET {{baseurl}}/read
+
+### Get csv data by id
+@id = 2
+GET {{baseurl}}/read/{{id}}
+
+### Get pokemon from API
+GET {{baseurl}}/getBerries
+
+### PokeGet directly from API
+GET https://pokeapi.co/api/v2/pokemon
