@@ -13,3 +13,7 @@ GET {{baseurl}}/getBerries
 
 ### PokeGet directly from API
 GET https://pokeapi.co/api/v2/pokemon
+
+### Read Concurrently
+
+GET {{baseurl}}/readConcurrently?type=even&items=8&items_per_worker=2
