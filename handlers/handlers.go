@@ -194,6 +194,8 @@ func ReadConcurrently(w http.ResponseWriter, r *http.Request) {
 		pokemonMap[line[0]] = line[1]
 		fmt.Println(line[1])
 	}
+	close(results)
+
 	response, err := json.Marshal(pokemonMap)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
