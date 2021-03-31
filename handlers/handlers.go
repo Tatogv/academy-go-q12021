@@ -58,7 +58,7 @@ func GetById(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetBerries(w http.ResponseWriter, r *http.Request) {
-	berries, err := usecase.GetFromApi("https://pokeapi.co/api/v2/berry/null")
+	berries, err := usecase.GetFromApi("https://pokeapi.co/api/v2/berry")
 	if err != nil {
 		usecase.HandleError(w, err, http.StatusInternalServerError)
 		return
