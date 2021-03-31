@@ -77,3 +77,24 @@ func TestGetBerries(t *testing.T) {
 	}
 
 }
+
+func TestReadConcurrently(t *testing.T) {
+	os.Remove(handlers.FilePath)
+	req, err := http.NewRequest("GET", "/readConcurrently?type=even&items=40&items_per_worker=333", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(handlers.ReadConcurrently)
+	handler.ServeHTTP(rr, req)
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+
+	expected := `{"0":"cheri","10":"figy","12":"mago","14":"iapapa","16":"bluk","18":"wepear","2":"pecha","4":"aspear","6":"oran","8":"lum"}`
+	if rr.Body.String() != expected {
+		t.Errorf("handler returned unexpected body: got %v want %v",
+			rr.Body.String(), expected)
+	}
+}

@@ -17,21 +17,18 @@ go run .
 
 ## Usage
 
+
+
 This API includes the following endpoints:
 
-- /read
-
-Read the contents of the stored CSV file.
-
-- /read/{id}
-
-Retrieve information of a specific line of the CSV.
-
-- /getBerries
-
-Retrieve a list of berries and save them on a CSV
+|Route|Description|
+--- | ---
+|/read|Read the contents of the stored CSV file.
+|/read/{id}|Retrieve information of a specific line of the CSV.
+|/getBerries|Retrieve a list of berries and save them on a CSV
+|/readConcurrently|Read a CSV using Go's powerful concurrency.
 
 ## TO DO
-- Implement clean architecture
 - Create swagger file
+- Implement Viper for configuration files
 
