@@ -26,9 +26,8 @@ This API includes the following endpoints:
 |/read|Read the contents of the stored CSV file.
 |/read/{id}|Retrieve information of a specific line of the CSV.
 |/getBerries|Retrieve a list of berries and save them on a CSV
-|/readConcurrently|Read a CSV using Go's powerful concurrency.
+|/readConcurrently|Read a CSV using Go's powerful concurrency. This endpoint must recieve three query parameters: *type* (*STRING*, "odd" or "even", to indicate which indexes must be read), *items* (*INTEEGER* number of items to recieve), *items_per_worker* (*INTEGER*, number of items each worker must read)
 
 ## TO DO
 - Create swagger file
-- Implement Viper for configuration files
 

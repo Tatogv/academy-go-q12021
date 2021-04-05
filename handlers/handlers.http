@@ -16,4 +16,4 @@ GET https://pokeapi.co/api/v2/pokemon
 
 ### Read Concurrently
 
-GET {{baseurl}}/readConcurrently?type=even&items=40&items_per_worker=333
+GET {{baseurl}}/readConcurrently?type=odd&items=40&items_per_worker=333

@@ -1,6 +1,7 @@
 package router
 
 import (
+	"api/entities"
 	"api/handlers"
 	"log"
 	"net/http"
@@ -8,11 +9,9 @@ import (
 	"github.com/gorilla/mux"
 )
 
-const port = ":8080"
-
-func CreateRouter() {
+func CreateRouter(config entities.Config) {
 	r := mux.NewRouter()
-
+	port := ":" + config.Port
 	api := r.PathPrefix("/api").Subrouter()
 	api.HandleFunc("/read", handlers.GetAll).Methods(http.MethodGet)
 	api.HandleFunc("/read/{pokemonId}", handlers.GetById).Methods(http.MethodGet)

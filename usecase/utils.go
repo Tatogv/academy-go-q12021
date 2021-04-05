@@ -5,7 +5,6 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"math"
 	"os"
 	"strconv"
@@ -78,7 +77,7 @@ func ValidateConcurrentReadParams(readType string, items int, itemsPerWorker int
 	} else if readType == "even" {
 		initialCounterPosition = 0
 	} else {
-		err = errors.New("Invalid type")
+		err = errors.New("Invalid type. Expected 'even' or 'odd'")
 		return 0, err
 	}
 
@@ -122,7 +121,6 @@ func ReadRecordsConcurrently(records [][]string, items int, itemsPerWorker int, 
 	for a := 1; a <= items; a++ {
 		line := <-results
 		recordsMap[line[0]] = line[1]
-		fmt.Println(line[1])
 	}
 
 	close(results)
