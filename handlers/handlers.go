@@ -51,10 +51,9 @@ func GetById(w http.ResponseWriter, r *http.Request) {
 		}
 		usecase.HandleSuccess(w, response)
 		return
-	} else {
-		err = errors.New("Resource Not Found")
-		usecase.HandleError(w, err, http.StatusNotFound)
 	}
+	err = errors.New("Resource Not Found")
+	usecase.HandleError(w, err, http.StatusNotFound)
 }
 
 func GetBerries(w http.ResponseWriter, r *http.Request) {
@@ -78,8 +77,19 @@ func ReadConcurrently(w http.ResponseWriter, r *http.Request) {
 
 	queryParametersReader := r.URL.Query()
 	readType := queryParametersReader.Get("type")
-	items, _ := strconv.Atoi(queryParametersReader.Get("items"))
-	itemsPerWorker, _ := strconv.Atoi(queryParametersReader.Get("items_per_worker"))
+	items, err := strconv.Atoi(queryParametersReader.Get("items"))
+
+	if err != nil {
+		usecase.HandleError(w, err, http.StatusBadRequest)
+		return
+	}
+
+	itemsPerWorker, err := strconv.Atoi(queryParametersReader.Get("items_per_worker"))
+
+	if err != nil {
+		usecase.HandleError(w, err, http.StatusBadRequest)
+		return
+	}
 
 	initialCounterPosition, err := usecase.ValidateConcurrentReadParams(readType, items, itemsPerWorker)
 	if err != nil {
@@ -99,6 +109,5 @@ func ReadConcurrently(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Error parsing result"))
 		return
 	}
-	w.WriteHeader(http.StatusOK)
-	w.Write(response)
+	usecase.HandleSuccess(w, response)
 }
