@@ -30,5 +30,4 @@ This API includes the following endpoints:
 
 ## TO DO
 - Create swagger file
-- Implement Viper for configuration files
 
