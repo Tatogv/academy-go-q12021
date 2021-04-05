@@ -1,6 +1,6 @@
 package entities
 
-type BerryResponse struct {
+type Response struct {
 	count    int
 	next     string
 	previous string
